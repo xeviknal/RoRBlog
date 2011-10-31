@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  title: MyString
+  content: MyText
+  creation_time: 2011-10-29
+  modification_time: 2011-10-29
+  thumbnail_path: MyString
+  state: MyString
+
+two:
+  name: MyString
+  title: MyString
+  content: MyText
+  creation_time: 2011-10-29
+  modification_time: 2011-10-29
+  thumbnail_path: MyString
+  state: MyString

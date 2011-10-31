@@ -1,0 +1,58 @@
+<h1>Hello FCUK world!</h1>
+<p>Welcome, That's a freakin' hello ROR world!
+<%= link_to "Do you wanna write a post?", new_post_path %></p>
+
+<h2>Latests posts</h2>
+<ul>
+	<% @Posts.each do |post| %>
+	<li>
+		<h3><%= post.title %> </h3>
+		<p>
+		<%   if post.content.length > 30 %>
+			<%= post.content[0,300] << "(...)" %>
+		<%   else %>
+			<%= post.content =%>
+		<%     end 
+		%>
+		</p>
+		<%= link_to "View more", post %>
+		<%= link_to "This is totally open, wanna edit post?", edit_post_path(post) %>
+		<p>Author:<strong> <%= post.name %> </strong> </p>
+		<p> <strong><%= post.comments.length %></strong> comments. 
+		<% if post.comments.length == 0 %>
+			<span style="color: green" > We encourage you to be the first to comment this post! :D</span>
+		<% end %>
+		</p>
+		
+		<% if post.comments.length > 0 %>
+			<h4>Comments: </h4>
+			<ul>
+		<% end %>
+		<% post.comments.each do |comment| %>
+			<li>
+				<p><%= comment.body %></p>
+				<p><%= comment.commenter %> on <%= comment.created_at %></p>
+			</li>
+		<% end %>
+		<% if post.comments.length > 0 %>
+			</ul>
+		<% end %>
+		<h4>Add a comment: </h4>
+		<div>
+			<%= form_for([post, post.comments.build]) do |f| %>
+			<div>
+			    <%= f.label :commenter %><br />
+			    <%= f.text_field :commenter %>
+			  </div>
+			  <div>
+			    <%= f.label :body %><br />
+			    <%= f.text_area :body %>
+			  </div>
+			  <div>
+			    <%= f.submit %>
+			  </div>	
+			<% end %>
+		</div>
+	</li>
+	<% end %>
+</ul>
